@@ -328,17 +328,17 @@ textarea
 }
 #notes.notebookadjust
 {
-  left: 3em;
+  left: 5em;
 }
 
 #body.notebookadjust
 {
-  left: 16em;
+  left: 20em;
 }
 
 #body.noteadjust
 {
-  left: 6em;
+  left: 8.5em;
 }
 
 #notebooks.collapsed > ol > li > a,
@@ -350,13 +350,52 @@ textarea
 #notebooks.collapsed,
 #notes.collapsed
 {
-  width: 1em;
+  width: 3em;
   padding: 1em;
   overflow-x: hidden;
   white-space: nowrap;
 }
-
+#notes.collapsed > ol > li
+{
+  padding: 0 .5em;
+}
+#notes.collapsed > ol > li > a,
+#notes.collapsed > ol > li > span
+{
+  padding: 0;
+  color: transparent;
+}
 #notes.collapsed
 {
   padding: 0;
+  width: 2.5em;
+}
+#backtostart
+{
+  background: #FEFEF2;
+  border-radius: 1em;
+  border: 3px solid #FFF;
+  max-width: 30%;
+  height: 58px;
+  margin-bottom: 3em;
+}
+#backtostart img
+{
+  width: 100%;
+}
+
+#notebooks.collapsed #backtostart
+{
+  height: 3em;
+  min-width: 3em;
+}
+
+#notebooks.collapsed ol > li 
+{
+  padding-left: 1em;
+}
+
+#notes.collapsed > ol > li > i 
+{
+  padding-left: .25em;
 }

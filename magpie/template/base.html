@@ -52,6 +52,7 @@
       </div>
     </div>
     <div id="notebooks" {% if notebook_name != u'' %}class="collapsed"{% end if %}>
+      <div id="backtostart"><a href="/"><img src="/static/img/magpie.png"/></a></div>
       <ol>
         {% for notebook in notebooks %}
           {% if notebook != '.git' %}
@@ -71,28 +72,29 @@
     </div>
     <div id="notes" class="{% if notebook_name is not None and notebook_name != u'' %}notebookadjust{% end if %} {% if note_name is not None and note_name != u'' %}collapsed{% end if %}">
       <form method="GET" action="/search">
-      <div id="searchbox">
-        <i class="fa fa-search"></i>
-        <input type="search" name="q" id="search" placeholder="Search" />
-      </div>
+        <div id="searchbox">
+          <i class="fa fa-search"></i>
+          <input type="search" name="q" id="search" placeholder="Search" />
+        </div>
       </form>
 {% if notebook_name != u'' %}
       <ol>
         {% for note in notes %}
           <li{% if note == note_name %} class="active"{% end if %}>
+            {% if u'%s/%s' % (notebook_name, note) in starred_notes %}
+              <i class='fa fa-star'></i>
+            {% else %}
+              <i class='fa fa-star-o'></i>
+            {% end if %}
             <a href="/{{ url_escape(notebook_name) }}/{{ url_escape(note) }}">
-              {% if u'%s/%s' % (notebook_name, note) in starred_notes %}
-                <i class='fa fa-star'></i>
-              {% else %}
-                <i class='fa fa-star-o'></i>
-              {% end if %}
               {{ note }}
             </a>
           </li>
         {% end for %}
         <li data-available="0">
+          <i class="fa fa-plus-circle"></i>
           <span data-toggle="modal" data-target="newnote">
-            <i class="fa fa-plus-circle"></i> New note
+            New Note
           </span>
         </li>
       </ol>
