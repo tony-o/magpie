@@ -62,7 +62,7 @@ textarea
   position: fixed;
   left: 16em;
   height: 100%;
-  width: 12em;
+  width: 14em;
   overflow-y: auto;
   border-right: 2px solid rgba(200,200,200,.2);
 }
@@ -78,11 +78,10 @@ textarea
   font-size: 1.2em;
 }
 #notes,
-#notebooks,
-#body
+#notebooks
 {
   transform: translate3d(0,0,0);
-  transition: width .35s, left .35s;
+  transition: width .15s, left .15s;
 }
 #notebooks > ol,
 #notes     > ol
