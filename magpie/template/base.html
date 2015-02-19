@@ -69,7 +69,7 @@
         </li>
       </ol>
     </div>
-    <div id="notes" class="{% if note_name is not None and note_name != u'' %}collapsed{% end if %}">
+    <div id="notes" class="{% if notebook_name is not None and notebook_name != u'' %}notebookadjust{% end if %} {% if note_name is not None and note_name != u'' %}collapsed{% end if %}">
       <div id="searchbox">
         <i class="fa fa-search"></i>
         <input name="search" id="search" placeholder="Search" />

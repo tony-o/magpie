@@ -38,10 +38,14 @@
 
   //menu adjustments
   var menus = [document.getElementById("notebooks"), document.getElementById("notes")];
+  var stat  = {};
   for(var m in menus){
+    if(menus[m].className.indexOf("collapsed") > -1){
+      stat[menus[m].getAttribute("id")] = true;
+    }
     menus[m].onmouseenter = menus[m].ontouchstart = function(e){
       e.stopPropagation();
-      if(this.className.indexOf("collapsed") == -1){
+      if(!stat[this.getAttribute("id")]){
         return;
       }
       if(this == menus[0]){
@@ -50,9 +54,12 @@
       this.className = this.className.replace(/(\s|^)collapsed(\s|$)/, "");
     };
     menus[m].onmouseleave = menus[m].ontouchstart = function(e){
+      if(!stat[this.getAttribute("id")]){
+        return;
+      }
       e.stopPropagation();
       if(this == menus[0]){
-        menus[1].className += "notebookadjust";
+        menus[1].className += " notebookadjust";
       }
       this.className += " collapsed";
     };
