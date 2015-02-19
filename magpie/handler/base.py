@@ -10,22 +10,16 @@ class BaseHandler(RequestHandler):
         kwargs.update(starred_notes=self.starred_notes)
 
         notebooks = self._notebooks_list(kwargs.get('hide_notebooks', False))
-        notebook_name = kwargs.get('notebook_name', u'')
-        if len(notebooks) > 0:
-            if notebooks[0] == '.git':
-                notebooks.pop(0)
-            if notebook_name is None:
-                notebook_name = notebooks[0]
-                kwargs['notebook_name'] = notebooks[0]
-            else:
-                kwargs['notebook_name'] = notebook_name
+        notebook_name = kwargs.get('notebook_name', None)
+        if notebook_name is not None:
+            kwargs['notes'] = self._notes_list(notebook_name)
         else:
             kwargs['notebook_name'] = u''
-        kwargs['notebooks'] = notebooks
-        
-        notes = self._notes_list(notebook_name)
-        kwargs['notes'] = notes
-        kwargs['note_name'] = kwargs.get('note_name', notes[0] if len(notes) > 0 else u'');
+            kwargs['note_name'] = u''
+            kwargs['notes'] = []
+
+        kwargs['notebooks'] = notebooks 
+        kwargs['note_name'] = kwargs.get('note_name', u'');
 
         super(BaseHandler, self).render(template, **kwargs)
 

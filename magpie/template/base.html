@@ -39,17 +39,19 @@
               </form>
             </li>
             !-->
-    <div id="body">
+    <div id="body" class="{% if notebook_name != u'' %}notebookadjust{% end if %} {% if note_name is not None and note_name != u'' %}noteadjust{% end if %}">
       <div id="header">
         <div class="logo">magpie</div>
       </div> 
       <div id="content">
+        <h1>{{notebook_name}}</h1>
+        <h2>{{note_name}}</h2>
+
         {% block body %}
         {% end block %}
       </div>
     </div>
-    <div id="notebooks">
-      <h2>Notebooks</h2>
+    <div id="notebooks" {% if notebook_name != u'' %}class="collapsed"{% end if %}>
       <ol>
         {% for notebook in notebooks %}
           {% if notebook != '.git' %}
@@ -67,7 +69,7 @@
         </li>
       </ol>
     </div>
-    <div id="notes">
+    <div id="notes" class="{% if note_name is not None and note_name != u'' %}collapsed{% end if %}">
       <div id="searchbox">
         <i class="fa fa-search"></i>
         <input name="search" id="search" placeholder="Search" />
