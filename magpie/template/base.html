@@ -26,19 +26,6 @@
     <link rel="stylesheet" href="{{ static_url('css/magpie.css') }}" />
   </head>
   <body {% block bodytag %}{% end block %}>
-            <!--{# SEARCH #}
-            <li>
-              <form method="GET" action="/search" class="navbar-form">
-                <div class="form-group">
-                  <input type="search" name="q" id="search" size="15"
-                  placeholder=" search" tabindex="10">
-                  <button class="btn">
-                    <span class="glyphicon glyphicon-search"></span>
-                  </button>
-                </div>
-              </form>
-            </li>
-            !-->
     <div id="body" class="{% if notebook_name != u'' %}notebookadjust{% end if %} {% if note_name is not None and note_name != u'' %}noteadjust{% end if %}">
       <div id="header">
         <div class="logo">magpie</div>
@@ -54,6 +41,11 @@
     <div id="notebooks" {% if notebook_name != u'' %}class="collapsed"{% end if %}>
       <div id="backtostart"><a href="/"><img src="/static/img/magpie.png"/></a></div>
       <ol>
+        <li data-available="0">
+          <span data-toggle="modal" data-target="newnotebook">
+            <i class="fa fa-plus-circle"></i> New notebook
+          </span>
+        </li>
         {% for notebook in notebooks %}
           {% if notebook != '.git' %}
                 <li {% if notebook_name == notebook %}class="active"{% end if %}>
@@ -63,11 +55,6 @@
                 </li>
           {% end if %}
         {% end for %}
-        <li data-available="0">
-          <span data-toggle="modal" data-target="newnotebook">
-            <i class="fa fa-plus-circle"></i> New notebook
-          </span>
-        </li>
       </ol>
     </div>
     <div id="notes" class="{% if notebook_name is not None and notebook_name != u'' %}notebookadjust{% end if %} {% if note_name is not None and note_name != u'' %}collapsed{% end if %}">
@@ -79,6 +66,12 @@
       </form>
 {% if notebook_name != u'' %}
       <ol>
+        <li data-available="0">
+          <i class="fa fa-plus-circle"></i>
+          <span data-toggle="modal" data-target="newnote">
+            New Note
+          </span>
+        </li>
         {% for note in notes %}
           <li{% if note == note_name %} class="active"{% end if %}>
             {% if u'%s/%s' % (notebook_name, note) in starred_notes %}
@@ -91,12 +84,6 @@
             </a>
           </li>
         {% end for %}
-        <li data-available="0">
-          <i class="fa fa-plus-circle"></i>
-          <span data-toggle="modal" data-target="newnote">
-            New Note
-          </span>
-        </li>
       </ol>
 {% end if %}
     </div>
