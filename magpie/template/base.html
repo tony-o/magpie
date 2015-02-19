@@ -70,17 +70,12 @@
       </ol>
     </div>
     <div id="notes" class="{% if notebook_name is not None and notebook_name != u'' %}notebookadjust{% end if %} {% if note_name is not None and note_name != u'' %}collapsed{% end if %}">
+      <form method="GET" action="/search">
       <div id="searchbox">
         <i class="fa fa-search"></i>
-        <input name="search" id="search" placeholder="Search" />
+        <input type="search" name="q" id="search" placeholder="Search" />
       </div>
-      <!--
-              <li>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#newnote">
-                  New Note+
-                </button>
-              </li>
-       !-->
+      </form>
 {% if notebook_name != u'' %}
       <ol>
         {% for note in notes %}
